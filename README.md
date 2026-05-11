@@ -30,12 +30,16 @@ Voir le fichier [INSTRUCTIONS.md](INSTRUCTIONS.md) pour les etapes detaillees.
 
 Tous les livrables du projet (cahier des charges, diagrammes UML, schema BD, guide de pitch) se trouvent dans le dossier `docs/`.
 
-## Compte de demonstration
-
-Apres `php artisan migrate --seed` :
+#
 - Email    : `admin@bienetre.tn`
 - Mot de passe : `admin123`
 
 ## Auteur
 
-Aziz Ben Kbaier - 2025/2026
+kbayer feres 
+amdouni sleh 
+achref louati 
+louay sakli 
+hakim louleb 
+
+
