@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="one" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="strokeWidth">
+      <line x1="2" y1="0" x2="2" y2="14" stroke="#1d2939" stroke-width="2"/>
+      <line x1="8" y1="0" x2="8" y2="14" stroke="#1d2939" stroke-width="2"/>
+    </marker>
+    <marker id="many" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,7 L12,1 M2,7 L12,7 M2,7 L12,13" stroke="#1d2939" stroke-width="1.5" fill="none"/>
+    </marker>
+  </defs>
+
+  <!-- Titre -->
+  <text x="600" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#1d2939">
+    Schéma de la base de données (MLD)
+  </text>
+  <text x="600" y="58" text-anchor="middle" font-size="13" fill="#6b7280">
+    Application Bien-être Étudiant — 5 tables principales
+  </text>
+
+  <!-- Table USERS -->
+  <g>
+    <rect x="450" y="100" width="280" height="220" fill="#fff" stroke="#2e6db4" stroke-width="2" rx="6"/>
+    <rect x="450" y="100" width="280" height="36" fill="#2e6db4" rx="6"/>
+    <rect x="450" y="125" width="280" height="11" fill="#2e6db4"/>
+    <text x="590" y="125" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">users</text>
+
+    <text x="465" y="160" font-size="13" fill="#1d2939" font-weight="bold">PK</text>
+    <text x="500" y="160" font-size="13" fill="#1d2939">id : BIGINT (auto)</text>
+
+    <text x="500" y="183" font-size="13" fill="#1d2939">name : VARCHAR(255)</text>
+    <text x="500" y="205" font-size="13" fill="#1d2939">email : VARCHAR(255) UNIQUE</text>
+    <text x="500" y="227" font-size="13" fill="#1d2939">password : VARCHAR(255)</text>
+    <text x="500" y="249" font-size="13" fill="#1d2939">is_admin : BOOLEAN</text>
+    <text x="500" y="271" font-size="13" fill="#1d2939">created_at : TIMESTAMP</text>
+    <text x="500" y="293" font-size="13" fill="#1d2939">updated_at : TIMESTAMP</text>
+  </g>
+
+  <!-- Table MOODS -->
+  <g>
+    <rect x="80" y="380" width="280" height="200" fill="#fff" stroke="#5cb85c" stroke-width="2" rx="6"/>
+    <rect x="80" y="380" width="280" height="36" fill="#5cb85c" rx="6"/>
+    <rect x="80" y="405" width="280" height="11" fill="#5cb85c"/>
+    <text x="220" y="405" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">moods</text>
+
+    <text x="95" y="440" font-size="13" fill="#1d2939" font-weight="bold">PK</text>
+    <text x="130" y="440" font-size="13" fill="#1d2939">id : BIGINT</text>
+
+    <text x="95" y="463" font-size="13" fill="#1d2939" font-weight="bold">FK</text>
+    <text x="130" y="463" font-size="13" fill="#1d2939">user_id : BIGINT</text>
+
+    <text x="130" y="486" font-size="13" fill="#1d2939">mood : VARCHAR(50)</text>
+    <text x="130" y="508" font-size="13" fill="#1d2939">intensity : TINYINT (1-5)</text>
+    <text x="130" y="530" font-size="13" fill="#1d2939">note : VARCHAR(255) NULL</text>
+    <text x="130" y="552" font-size="13" fill="#1d2939">created_at : TIMESTAMP</text>
+    <text x="130" y="574" font-size="13" fill="#1d2939">updated_at : TIMESTAMP</text>
+  </g>
+
+  <!-- Table CHATBOT_MESSAGES -->
+  <g>
+    <rect x="820" y="380" width="300" height="200" fill="#fff" stroke="#f0ad4e" stroke-width="2" rx="6"/>
+    <rect x="820" y="380" width="300" height="36" fill="#f0ad4e" rx="6"/>
+    <rect x="820" y="405" width="300" height="11" fill="#f0ad4e"/>
+    <text x="970" y="405" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">chatbot_messages</text>
+
+    <text x="835" y="440" font-size="13" fill="#1d2939" font-weight="bold">PK</text>
+    <text x="870" y="440" font-size="13" fill="#1d2939">id : BIGINT</text>
+
+    <text x="835" y="463" font-size="13" fill="#1d2939" font-weight="bold">FK</text>
+    <text x="870" y="463" font-size="13" fill="#1d2939">user_id : BIGINT</text>
+
+    <text x="870" y="486" font-size="13" fill="#1d2939">message : TEXT</text>
+    <text x="870" y="508" font-size="13" fill="#1d2939">response : TEXT</text>
+    <text x="870" y="530" font-size="13" fill="#1d2939">created_at : TIMESTAMP</text>
+    <text x="870" y="552" font-size="13" fill="#1d2939">updated_at : TIMESTAMP</text>
+  </g>
+
+  <!-- Table CHATBOT_RESPONSES -->
+  <g>
+    <rect x="80" y="630" width="280" height="120" fill="#fff" stroke="#9b59b6" stroke-width="2" rx="6"/>
+    <rect x="80" y="630" width="280" height="36" fill="#9b59b6" rx="6"/>
+    <rect x="80" y="655" width="280" height="11" fill="#9b59b6"/>
+    <text x="220" y="655" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">chatbot_responses</text>
+
+    <text x="95" y="690" font-size="13" fill="#1d2939" font-weight="bold">PK</text>
+    <text x="130" y="690" font-size="13" fill="#1d2939">id : BIGINT</text>
+
+    <text x="130" y="713" font-size="13" fill="#1d2939">keyword : VARCHAR(100)</text>
+    <text x="130" y="735" font-size="13" fill="#1d2939">response : TEXT</text>
+  </g>
+
+  <!-- Table RESOURCES -->
+  <g>
+    <rect x="820" y="630" width="300" height="120" fill="#fff" stroke="#d9534f" stroke-width="2" rx="6"/>
+    <rect x="820" y="630" width="300" height="36" fill="#d9534f" rx="6"/>
+    <rect x="820" y="655" width="300" height="11" fill="#d9534f"/>
+    <text x="970" y="655" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">resources</text>
+
+    <text x="835" y="690" font-size="13" fill="#1d2939" font-weight="bold">PK</text>
+    <text x="870" y="690" font-size="13" fill="#1d2939">id : BIGINT</text>
+
+    <text x="870" y="713" font-size="13" fill="#1d2939">title, description, category, url</text>
+    <text x="870" y="735" font-size="13" fill="#1d2939">created_at, updated_at</text>
+  </g>
+
+  <!-- Relations -->
+  <!-- users (1) -> moods (N) -->
+  <line x1="450" y1="270" x2="360" y2="430" stroke="#1d2939" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+  <text x="375" y="345" font-size="12" fill="#1d2939" font-weight="bold">1, N</text>
+  <text x="345" y="360" font-size="11" fill="#666" font-style="italic">enregistre</text>
+
+  <!-- users (1) -> chatbot_messages (N) -->
+  <line x1="730" y1="270" x2="820" y2="430" stroke="#1d2939" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+  <text x="775" y="345" font-size="12" fill="#1d2939" font-weight="bold">1, N</text>
+  <text x="755" y="360" font-size="11" fill="#666" font-style="italic">discute</text>
+
+  <!-- chatbot_messages -> chatbot_responses (informel, dashed) -->
+  <line x1="820" y1="540" x2="360" y2="690" stroke="#888" stroke-width="1.2" stroke-dasharray="6,4"/>
+  <text x="540" y="630" font-size="11" fill="#666" font-style="italic">utilise (logique appli)</text>
+
+  <!-- Legende -->
+  <g transform="translate(40, 100)">
+    <rect x="0" y="0" width="200" height="120" fill="#fff" stroke="#bbb" stroke-width="1" rx="4"/>
+    <text x="10" y="20" font-size="13" font-weight="bold" fill="#1d2939">Légende</text>
+    <text x="10" y="42" font-size="11" fill="#1d2939"><tspan font-weight="bold">PK</tspan> : Clé primaire</text>
+    <text x="10" y="62" font-size="11" fill="#1d2939"><tspan font-weight="bold">FK</tspan> : Clé étrangère</text>
+    <text x="10" y="82" font-size="11" fill="#1d2939">Trait plein : relation BD</text>
+    <text x="10" y="102" font-size="11" fill="#1d2939">Trait pointillé : logique applicative</text>
+  </g>
+</svg>

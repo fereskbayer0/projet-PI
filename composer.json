@@ -1,0 +1,29 @@
+{
+    "name": "bien-etre-etudiant/plateforme",
+    "type": "project",
+    "description": "Plateforme Web de Bien-être Étudiant",
+    "keywords": ["laravel", "bien-etre", "etudiant"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^10.0",
+        "laravel/breeze": "^1.21"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    }
+}

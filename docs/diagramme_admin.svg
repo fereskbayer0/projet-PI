@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+    <marker id="arrowDashed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <!-- Titre -->
+  <rect x="0" y="0" width="1100" height="50" fill="#ffffff"/>
+  <text x="550" y="32" text-anchor="middle" font-size="22" font-weight="bold" fill="#1d2939">
+    2. DIAGRAMME DE CAS D'UTILISATION : ADMINISTRATEUR
+  </text>
+
+  <!-- Cadre application -->
+  <rect x="280" y="80" width="780" height="660" fill="#f5f9fd" stroke="#2e6db4" stroke-width="2" rx="6"/>
+  <text x="670" y="110" text-anchor="middle" font-size="16" font-weight="bold" fill="#1d2939">
+    Application Bien-être Étudiant - Espace Administrateur
+  </text>
+
+  <!-- Acteur Administrateur -->
+  <g transform="translate(120, 380)">
+    <circle cx="0" cy="-30" r="14" fill="none" stroke="#1d2939" stroke-width="2"/>
+    <line x1="0" y1="-16" x2="0" y2="25" stroke="#1d2939" stroke-width="2"/>
+    <line x1="-20" y1="-5" x2="20" y2="-5" stroke="#1d2939" stroke-width="2"/>
+    <line x1="0" y1="25" x2="-18" y2="55" stroke="#1d2939" stroke-width="2"/>
+    <line x1="0" y1="25" x2="18" y2="55" stroke="#1d2939" stroke-width="2"/>
+    <text x="0" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1d2939">Administrateur</text>
+  </g>
+
+  <!-- Cas principaux -->
+  <!-- S'authentifier (en haut, partage avec etudiant) -->
+  <g>
+    <ellipse cx="670" cy="160" rx="105" ry="28" fill="#cde1f7" stroke="#2e6db4" stroke-width="1.5"/>
+    <text x="670" y="165" text-anchor="middle" font-size="13" fill="#1d2939">S'authentifier</text>
+  </g>
+
+  <!-- Gerer les utilisateurs -->
+  <g>
+    <ellipse cx="490" cy="240" rx="115" ry="28" fill="#cde1f7" stroke="#2e6db4" stroke-width="1.5"/>
+    <text x="490" y="245" text-anchor="middle" font-size="13" fill="#1d2939">Gérer les utilisateurs</text>
+  </g>
+
+  <!-- Gerer les ressources -->
+  <g>
+    <ellipse cx="490" cy="340" rx="115" ry="28" fill="#cde1f7" stroke="#2e6db4" stroke-width="1.5"/>
+    <text x="490" y="345" text-anchor="middle" font-size="13" fill="#1d2939">Gérer les ressources</text>
+  </g>
+
+  <!-- Valider le contenu -->
+  <g>
+    <ellipse cx="490" cy="440" rx="115" ry="28" fill="#cde1f7" stroke="#2e6db4" stroke-width="1.5"/>
+    <text x="490" y="445" text-anchor="middle" font-size="13" fill="#1d2939">Valider le contenu</text>
+  </g>
+
+  <!-- Consulter les statistiques globales -->
+  <g>
+    <ellipse cx="490" cy="540" rx="135" ry="28" fill="#cde1f7" stroke="#2e6db4" stroke-width="1.5"/>
+    <text x="490" y="545" text-anchor="middle" font-size="13" fill="#1d2939">Consulter statistiques globales</text>
+  </g>
+
+  <!-- Visualiser les audits -->
+  <g>
+    <ellipse cx="490" cy="640" rx="115" ry="28" fill="#cde1f7" stroke="#2e6db4" stroke-width="1.5"/>
+    <text x="490" y="645" text-anchor="middle" font-size="13" fill="#1d2939">Visualiser les audits</text>
+  </g>
+
+  <!-- Sous-cas (a droite) - Gerer utilisateurs -->
+  <g>
+    <ellipse cx="870" cy="200" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="205" text-anchor="middle" font-size="12" fill="#1d2939">Lister utilisateurs</text>
+  </g>
+  <g>
+    <ellipse cx="870" cy="245" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="250" text-anchor="middle" font-size="12" fill="#1d2939">Promouvoir admin</text>
+  </g>
+  <g>
+    <ellipse cx="870" cy="290" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="295" text-anchor="middle" font-size="12" fill="#1d2939">Supprimer compte</text>
+  </g>
+
+  <!-- Sous-cas Gerer ressources -->
+  <g>
+    <ellipse cx="870" cy="335" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="340" text-anchor="middle" font-size="12" fill="#1d2939">Ajouter ressource</text>
+  </g>
+  <g>
+    <ellipse cx="870" cy="380" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="385" text-anchor="middle" font-size="12" fill="#1d2939">Modifier ressource</text>
+  </g>
+  <g>
+    <ellipse cx="870" cy="425" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="430" text-anchor="middle" font-size="12" fill="#1d2939">Supprimer ressource</text>
+  </g>
+
+  <!-- Sous-cas valider contenu -->
+  <g>
+    <ellipse cx="870" cy="470" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="475" text-anchor="middle" font-size="12" fill="#1d2939">Approuver / Rejeter</text>
+  </g>
+
+  <!-- Sous-cas statistiques -->
+  <g>
+    <ellipse cx="870" cy="540" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="545" text-anchor="middle" font-size="12" fill="#1d2939">Voir nb utilisateurs</text>
+  </g>
+  <g>
+    <ellipse cx="870" cy="585" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="590" text-anchor="middle" font-size="12" fill="#1d2939">Voir nb humeurs</text>
+  </g>
+
+  <!-- Sous-cas audits -->
+  <g>
+    <ellipse cx="870" cy="640" rx="100" ry="22" fill="#dff0d8" stroke="#3c763d" stroke-width="1.2"/>
+    <text x="870" y="645" text-anchor="middle" font-size="12" fill="#1d2939">Consulter logs</text>
+  </g>
+
+  <!-- Liens acteur vers cas principaux -->
+  <line x1="150" y1="380" x2="375" y2="240" stroke="#1d2939" stroke-width="1.5"/>
+  <line x1="150" y1="380" x2="375" y2="340" stroke="#1d2939" stroke-width="1.5"/>
+  <line x1="150" y1="380" x2="375" y2="440" stroke="#1d2939" stroke-width="1.5"/>
+  <line x1="150" y1="380" x2="355" y2="540" stroke="#1d2939" stroke-width="1.5"/>
+  <line x1="150" y1="380" x2="375" y2="640" stroke="#1d2939" stroke-width="1.5"/>
+
+  <!-- Inclusions vers S'authentifier (depuis les cas principaux) -->
+  <g stroke="#888" stroke-width="1.2" stroke-dasharray="6,4" fill="none">
+    <line x1="490" y1="212" x2="615" y2="170" marker-end="url(#arrowDashed)"/>
+    <line x1="490" y1="312" x2="610" y2="175" marker-end="url(#arrowDashed)"/>
+    <line x1="490" y1="412" x2="608" y2="178" marker-end="url(#arrowDashed)"/>
+    <line x1="490" y1="512" x2="608" y2="180" marker-end="url(#arrowDashed)"/>
+    <line x1="490" y1="612" x2="608" y2="182" marker-end="url(#arrowDashed)"/>
+  </g>
+  <text x="555" y="195" font-size="11" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+  <text x="555" y="285" font-size="11" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+  <text x="555" y="380" font-size="11" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Inclusions des cas principaux vers sous-cas -->
+  <g stroke="#888" stroke-width="1.2" stroke-dasharray="6,4" fill="none">
+    <line x1="605" y1="235" x2="770" y2="200" marker-end="url(#arrowDashed)"/>
+    <line x1="605" y1="240" x2="770" y2="245" marker-end="url(#arrowDashed)"/>
+    <line x1="605" y1="250" x2="770" y2="290" marker-end="url(#arrowDashed)"/>
+
+    <line x1="605" y1="335" x2="770" y2="335" marker-end="url(#arrowDashed)"/>
+    <line x1="605" y1="340" x2="770" y2="380" marker-end="url(#arrowDashed)"/>
+    <line x1="605" y1="345" x2="770" y2="425" marker-end="url(#arrowDashed)"/>
+
+    <line x1="605" y1="445" x2="770" y2="470" marker-end="url(#arrowDashed)"/>
+
+    <line x1="625" y1="535" x2="770" y2="540" marker-end="url(#arrowDashed)"/>
+    <line x1="625" y1="545" x2="770" y2="585" marker-end="url(#arrowDashed)"/>
+
+    <line x1="605" y1="640" x2="770" y2="640" marker-end="url(#arrowDashed)"/>
+  </g>
+  <text x="690" y="180" font-size="10" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+  <text x="690" y="320" font-size="10" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+  <text x="690" y="455" font-size="10" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+  <text x="690" y="525" font-size="10" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+  <text x="690" y="625" font-size="10" fill="#666" font-style="italic">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Pied de page -->
+  <text x="550" y="765" text-anchor="middle" font-size="11" fill="#6b7280">
+    Application Bien-être Étudiant - PI 2LBC-BIS 25/26
+  </text>
+</svg>
