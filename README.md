@@ -166,8 +166,8 @@ erDiagram
         int id PK
         int user_id FK
         string mood
-        tinyint intensity "1 à 5"
-        string note "facultative"
+        tinyint intensity
+        string note
     }
     CHATBOT_MESSAGES {
         int id PK
@@ -188,6 +188,18 @@ erDiagram
         string url
     }
 ```
+
+Le détail des colonnes, si le schéma ci-dessus ne s'affiche pas :
+
+| Table | Colonnes | Remarques |
+|---|---|---|
+| `users` | `id`, `name`, `email`, `password`, `is_admin` | `is_admin` distingue étudiant et administrateur |
+| `moods` | `id`, `user_id`, `mood`, `intensity`, `note` | `intensity` de 1 à 5 ; `note` facultative |
+| `chatbot_messages` | `id`, `user_id`, `message`, `response` | Une ligne par échange avec WellBot |
+| `chatbot_responses` | `id`, `keyword`, `response` | Réponses de secours, sans lien avec un compte |
+| `resources` | `id`, `title`, `description`, `category`, `url` | `category` et `url` facultatives |
+
+Toutes les tables portent aussi `created_at` et `updated_at`.
 
 `chatbot_responses` et `resources` ne dépendent d'aucun utilisateur : ce sont
 des contenus communs, alimentés par les administrateurs.
