@@ -14,6 +14,16 @@ return [
     |
     */
 
+    /*
+     * Google Gemini alimente les reponses de WellBot.
+     * Sans cle, l'assistant bascule sur les mots-cles de la table
+     * chatbot_responses : l'application reste pleinement fonctionnelle.
+     * Cle gratuite : https://aistudio.google.com/app/apikey
+     */
+    'gemini' => [
+        'key' => env('GEMINI_API_KEY'),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

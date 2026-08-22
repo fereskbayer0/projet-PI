@@ -1,69 +1,109 @@
-# Mise en route du projet "Bien-etre Etudiant"
+# Installation détaillée de WellBot
 
-## 1. Installer les dependances Laravel
-```
+Ce guide reprend pas à pas ce que résume le [README](README.md), et ajoute
+l'option MySQL ainsi que les problèmes les plus courants.
+
+Prérequis : **PHP 8.1 ou plus** et **Composer**.
+Vérifier avec `php -v` et `composer -V`.
+
+---
+
+## 1. Installer les dépendances
+
+```bash
 composer install
 ```
 
-## 2. Generer la cle d'application
-```
+## 2. Créer le fichier de configuration
+
+```bash
+cp .env.example .env        # Windows : copy .env.example .env
 php artisan key:generate
 ```
 
-## 3. Creer la base de donnees
+`key:generate` remplit `APP_KEY`, qui sert à chiffrer les sessions et les
+cookies. Sans cette clé, l'application refuse de démarrer.
 
-### Option A : SQLite (le plus simple)
-Le fichier `database/database.sqlite` doit exister :
-```
-type nul > database\database.sqlite
-```
-(sur Linux/Mac : `touch database/database.sqlite`)
+## 3. Préparer la base de données
 
-### Option B : MySQL via phpMyAdmin
-1. Ouvrir phpMyAdmin (XAMPP/WAMP)
-2. Creer une base nommee `bien_etre_etudiant`
-3. Modifier `.env` : decommenter les lignes `DB_CONNECTION=mysql` et commenter `DB_CONNECTION=sqlite`
+### Option A — SQLite (recommandé, zéro installation)
 
-## 4. Lancer les migrations + seeders
+Le fichier doit simplement exister :
+
+```bash
+type nul > database\database.sqlite      # Windows
+touch database/database.sqlite           # Linux / macOS
 ```
+
+Rien d'autre à configurer : `.env.example` utilise déjà `DB_CONNECTION=sqlite`.
+
+### Option B — MySQL via phpMyAdmin (XAMPP / WAMP)
+
+1. Démarrer Apache et MySQL depuis le panneau XAMPP ou WAMP.
+2. Ouvrir phpMyAdmin et créer une base nommée `bien_etre_etudiant`.
+3. Dans `.env`, commenter la ligne SQLite et décommenter le bloc MySQL :
+
+```env
+# DB_CONNECTION=sqlite
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bien_etre_etudiant
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+## 4. Créer les tables et les données de départ
+
+```bash
 php artisan migrate --seed
 ```
 
-Cela cree toutes les tables ET un compte admin par defaut :
-- Email    : admin@bienetre.tn
-- Mot de passe : admin123
+Cette commande crée les cinq tables du projet et insère :
 
-## 5. (Optionnel) Activer l'IA du chatbot
-1. Aller sur https://aistudio.google.com/app/apikey
-2. Se connecter avec un compte Google
-3. Cliquer sur "Create API Key"
-4. Coller la cle dans `.env` :
+- un **compte administrateur** — `admin@bienetre.tn` / `admin123`
+- une série de **ressources** de bien-être
+- une série de **mots-clés** pour le chatbot
+
+## 5. Activer l'IA du chatbot *(facultatif)*
+
+1. Aller sur <https://aistudio.google.com/app/apikey>.
+2. Se connecter avec un compte Google, puis cliquer sur **Create API Key**.
+3. Coller la clé dans `.env` :
+
+```env
+GEMINI_API_KEY=votre_cle_ici
 ```
-GEMINI_API_KEY=ta_cle_ici
-```
-Si tu sautes cette etape, le chatbot fonctionne quand meme avec les mots cles.
+
+Cette étape peut être sautée sans conséquence : WellBot répond alors à partir
+des mots-clés gérés dans l'espace administrateur.
 
 ## 6. Lancer le serveur
-```
+
+```bash
 php artisan serve
 ```
-Ouvrir http://localhost:8000 dans le navigateur.
 
-## 7. Initialiser Git (a faire avant la presentation)
-```
-git init
-git add .
-git commit -m "Premier commit : projet bien-etre etudiant"
-```
-Puis creer un repo sur GitHub et pousser :
-```
-git remote add origin https://github.com/TON_PSEUDO/bien-etre-etudiant.git
-git branch -M main
-git push -u origin main
-```
+Ouvrir <http://localhost:8000>.
 
-## Documents fournis (dossier docs/)
-- `Cahier_des_charges.docx` : a presenter avec les diagrammes UML
-- `Comment_pitcher_le_projet.docx` : guide complet de la presentation orale
-- `diagramme_admin.svg` : diagramme de cas d'utilisation administrateur
-- `schema_base_de_donnees.svg` : schema MLD de la base
+---
+
+## En cas de problème
+
+| Symptôme | Cause probable | Solution |
+|---|---|---|
+| `No application encryption key has been specified` | `APP_KEY` vide | `php artisan key:generate` |
+| `database file does not exist` | Fichier SQLite absent | Refaire l'étape 3 |
+| Page **« Votre session a expiré »** (419) | Onglet resté ouvert pendant un redémarrage du serveur | Recharger la page de connexion |
+| Modifications invisibles après édition | Caches Laravel | `php artisan config:clear && php artisan route:clear && php artisan view:clear` |
+| Le chatbot répond toujours pareil | Pas de clé Gemini | Normal : mode mots-clés (étape 5 pour l'activer) |
+| `SQLSTATE[HY000] [1049] Unknown database` | Base MySQL non créée | Refaire l'étape 3, option B |
+
+## Commandes utiles
+
+```bash
+php artisan route:list          # toutes les routes et leurs permissions
+php artisan migrate:fresh --seed  # remet la base à zéro (efface les données)
+php artisan tinker              # console interactive
+```

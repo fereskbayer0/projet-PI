@@ -1,0 +1,95 @@
+Institut Superieur des Etudes Technologiques
+2eme annee Licence en Business Computing - BIS - 2025/2026
+CAHIER DES CHARGES
+Application Web de Bien-etre Etudiant
+Sujet n5 - Plateforme avec chatbot IA
+Realise par : Aziz Ben Kbaier
+Annee universitaire : 2025 - 2026
+
+1. Introduction
+Le stress et l&apos;anxiete touchent de plus en plus d&apos;etudiants. Entre les examens, les projets et la vie personnelle, il est facile de se sentir depasse. Ce projet propose une application web simple qui aide l&apos;etudiant a mieux gerer son bien-etre mental au quotidien.
+
+L&apos;idee est de proposer 4 outils dans un seul site : un suivi d&apos;humeur, un chatbot pour parler quand on en a besoin, des ressources utiles (exercices, articles), et des graphiques pour suivre son evolution dans le temps.
+2. Contexte du projet
+Ce projet est realise dans le cadre du module &quot;Projet integre&quot; en 2eme annee Licence Business Computing (specialite BIS). L&apos;objectif est de mettre en pratique les notions vues durant l&apos;annee : conception UML, base de donnees, developpement web dynamique avec un framework, gestion de version avec Git.
+3. Objectifs
+3.1 Objectif general
+Creer une plateforme web facile a utiliser qui aide les etudiants a prendre soin de leur sante mentale.
+3.2 Objectifs specifiques
+Permettre a l&apos;etudiant d&apos;enregistrer son humeur tous les jours.
+Offrir un chatbot d&apos;ecoute base sur l&apos;IA pour les moments difficiles.
+Donner acces a des ressources de bien-etre (articles, conseils).
+Visualiser l&apos;evolution de l&apos;humeur grace a des graphiques.
+Permettre a un administrateur de gerer la plateforme.
+4. Acteurs du systeme
+Deux types d&apos;utilisateurs vont interagir avec l&apos;application :
+
+Acteur
+Role et droits
+Etudiant
+Utilisateur principal. Il peut s&apos;inscrire, se connecter, enregistrer son humeur, parler avec le chatbot, consulter les ressources et voir ses statistiques.
+Administrateur
+Gere la plateforme. Il peut voir tous les utilisateurs, en supprimer, promouvoir un etudiant en admin, ajouter et modifier les ressources, voir les statistiques globales.
+5. Fonctionnalites
+5.1 Fonctionnalites cote etudiant
+Inscription et connexion securisees (mot de passe chiffre).
+Enregistrer une humeur (type, intensite de 1 a 5, note optionnelle).
+Consulter et modifier ses humeurs precedentes.
+Discuter avec un chatbot intelligent (Google Gemini en mode IA).
+Consulter une bibliotheque de ressources de bien-etre.
+Voir des graphiques de l&apos;evolution de son humeur.
+Effacer son historique de chatbot.
+5.2 Fonctionnalites cote administrateur
+Tableau de bord avec des chiffres cles (nb utilisateurs, humeurs, etc).
+Liste de tous les utilisateurs.
+Promouvoir un etudiant en administrateur.
+Supprimer un compte utilisateur.
+Ajouter, modifier et supprimer des ressources.
+6. Besoins non fonctionnels
+Securite : mots de passe chiffres avec bcrypt, protection CSRF sur les formulaires.
+Ergonomie : interface simple et coloree, lisible sur ordinateur et mobile.
+Performance : chargement rapide des pages.
+Maintenabilite : code organise selon le modele MVC.
+Disponibilite : application accessible en local via WAMP ou XAMPP.
+7. Technologies utilisees
+Domaine
+Technologie
+Langage cote serveur
+PHP 8.1 avec le framework Laravel 10
+Langages cote client
+HTML5, CSS3 (Bootstrap 5), JavaScript (Chart.js)
+Base de donnees
+MySQL via phpMyAdmin (ou SQLite en developpement)
+Intelligence artificielle
+API Google Gemini (gratuit)
+Versionnement
+Git + GitHub
+Editeur de code
+Visual Studio Code
+8. Planning du projet
+Le projet a ete decoupe en 4 grandes etapes :
+
+Etape
+Activite
+Livrable
+1
+Analyse du sujet et redaction du cahier des charges
+Cahier des charges (ce document)
+2
+Conception UML
+Diagrammes de cas d&apos;utilisation, classes, sequences
+3
+Conception de la base de donnees
+Schema MLD + base creee dans phpMyAdmin
+4
+Developpement avec Laravel + integration Git
+Site web fonctionnel + depot GitHub
+9. Resultats attendus
+A la fin du projet, on doit avoir :
+Un site web fonctionnel avec authentification, formulaires et CRUD complet.
+Un chatbot capable de repondre intelligemment grace a l&apos;IA Gemini.
+Une base de donnees relationnelle propre.
+Un depot GitHub avec un historique de commits.
+Une presentation orale claire devant le jury.
+10. Conclusion
+Ce cahier des charges fixe les bases du projet &quot;Application Bien-etre Etudiant&quot;. Il sert de reference tout au long du developpement pour s&apos;assurer que le travail reste aligne avec l&apos;objectif initial : aider les etudiants a mieux vivre leur quotidien grace a une application simple et utile.

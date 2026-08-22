@@ -28,9 +28,21 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
-    // petite fonction pour savoir si l'utilisateur est admin
-    public function estAdmin()
+    /** Un seul point de verite pour la question "ce compte est-il administrateur ?". */
+    public function estAdmin(): bool
     {
-        return $this->is_admin == true;
+        return (bool) $this->is_admin;
+    }
+
+    /** Les humeurs enregistrees par cet etudiant. */
+    public function moods()
+    {
+        return $this->hasMany(Mood::class);
+    }
+
+    /** Ses echanges avec WellBot. */
+    public function chatbotMessages()
+    {
+        return $this->hasMany(ChatbotMessage::class);
     }
 }

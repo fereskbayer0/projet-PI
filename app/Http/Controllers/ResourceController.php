@@ -4,21 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Resource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
+/**
+ * Bibliotheque de ressources de bien-etre.
+ *
+ * Lecture ouverte a tout compte connecte ; creation, modification et
+ * suppression sont reservees aux administrateurs par le middleware "admin"
+ * applique dans routes/web.php.
+ */
 class ResourceController extends Controller
 {
     public function index()
     {
-        $resources = Resource::orderBy('category')->orderBy('title')->get();
-
-        return view('resources', compact('resources'));
+        return view('resources', [
+            'resources' => Resource::orderBy('category')->orderBy('title')->get(),
+        ]);
     }
 
     public function create()
     {
-        abort_if(!Auth::user() || !Auth::user()->estAdmin(), 403);
-
+        // Un modele vide : la meme vue sert a creer et a modifier
         return view('resource-form', [
             'resource' => new Resource(),
         ]);
@@ -26,42 +31,31 @@ class ResourceController extends Controller
 
     public function store(Request $request)
     {
-        abort_if(!Auth::user() || !Auth::user()->estAdmin(), 403);
-
-        $attributes = $this->validated($request);
-
-        Resource::create($attributes);
+        Resource::create($this->validated($request));
 
         return redirect()->route('resources.index')->with('success', 'Ressource ajoutée.');
     }
 
     public function edit(Resource $resource)
     {
-        abort_if(!Auth::user() || !Auth::user()->estAdmin(), 403);
-
         return view('resource-form', compact('resource'));
     }
 
     public function update(Request $request, Resource $resource)
     {
-        abort_if(!Auth::user() || !Auth::user()->estAdmin(), 403);
-
-        $attributes = $this->validated($request);
-
-        $resource->update($attributes);
+        $resource->update($this->validated($request));
 
         return redirect()->route('resources.index')->with('success', 'Ressource mise à jour.');
     }
 
     public function destroy(Resource $resource)
     {
-        abort_if(!Auth::user() || !Auth::user()->estAdmin(), 403);
-
         $resource->delete();
 
         return back()->with('success', 'Ressource supprimée.');
     }
 
+    /** Regles partagees par la creation et la modification. */
     private function validated(Request $request): array
     {
         return $request->validate([

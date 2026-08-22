@@ -1,74 +1,151 @@
 @extends('layouts.app')
 
-@section('title', 'Chatbot - Bien-être Étudiant')
+@section('title', 'WellBot - Votre assistant bien-être')
 
 @section('content')
-<div class="row gy-4">
-    <div class="col-12">
-        <div class="card feature-card p-4">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div>
-                    <h2 class="mb-1">Chatbot de soutien</h2>
-                    <p class="text-muted mb-0">Assistant conversationnel à base de règles : posez une question sur votre humeur et recevez une réponse adaptée.</p>
-                </div>
-                @if(!$messages->isEmpty())
-                    <form method="POST" action="{{ route('chatbot.clear') }}" onsubmit="return confirm('Effacer tout l\'historique ?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger btn-sm">Effacer l'historique</button>
-                    </form>
-                @endif
-            </div>
+@php $thread = $messages->reverse(); @endphp
+
+<div class="wb-pagehead wb-reveal">
+    <div class="wb-pagehead-row">
+        <div>
+            <span class="wb-eyebrow"><x-icon name="message" /> Assistant</span>
+            <h1 style="font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.3rem)">Parlons de votre journée</h1>
+            <p>WellBot écoute, reformule et propose des pistes simples. Il ne pose aucun diagnostic.</p>
         </div>
+        @if($messages->isNotEmpty())
+            <form method="POST" action="{{ route('chatbot.clear') }}"
+                  onsubmit="return confirm('Effacer tout l\'historique de conversation ?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <x-icon name="trash" /> Effacer l'historique
+                </button>
+            </form>
+        @endif
     </div>
+</div>
 
-    @if(session('success'))
-        <div class="col-12">
-            <div class="alert alert-success">{{ session('success') }}</div>
-        </div>
-    @endif
+<div class="row g-4">
+    {{-- ----------------------------------------------------- Conversation --}}
+    <div class="col-lg-8">
+        <div class="wb-card wb-reveal">
+            <div class="wb-thread">
+                {{-- Message d'accueil, toujours en tête de fil --}}
+                <div class="wb-thread-row">
+                    <span class="chatbot-avatar" style="background: linear-gradient(140deg, var(--wb-brand-500), var(--wb-brand-700))">
+                        <x-icon name="heart-pulse" />
+                    </span>
+                    <div class="wb-thread-bubble">
+                        Bonjour {{ Str::before(Auth::user()->name, ' ') }} 👋 Je suis WellBot.
+                        Racontez-moi ce qui vous préoccupe — même en quelques mots, même mal formulé.
+                    </div>
+                </div>
 
-    <div class="col-md-5">
-        <div class="card feature-card p-4">
-            <h5>Envoyer un message</h5>
+                @foreach($thread as $message)
+                    <div class="wb-thread-row is-user">
+                        <span class="wb-avatar">{{ Str::upper(Str::substr(Auth::user()->name, 0, 1)) }}</span>
+                        <div class="wb-thread-bubble">
+                            {{ $message->message }}
+                            <span class="wb-thread-meta">{{ $message->created_at->format('d/m à H:i') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="wb-thread-row">
+                        <span class="chatbot-avatar" style="background: linear-gradient(140deg, var(--wb-brand-500), var(--wb-brand-700))">
+                            <x-icon name="heart-pulse" />
+                        </span>
+                        <div class="wb-thread-bubble">
+                            {{ $message->response }}
+                            <form method="POST" action="{{ route('chatbot.destroy', $message) }}" class="mt-2"
+                                  onsubmit="return confirm('Supprimer cet échange ?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="wb-iconbtn wb-iconbtn-danger"
+                                        title="Supprimer cet échange" aria-label="Supprimer cet échange">
+                                    <x-icon name="trash" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <hr class="wb-divider">
+
+            {{-- --------------------------------------------------- Composer --}}
             <form method="POST" action="{{ route('chatbot.send') }}">
                 @csrf
-                <div class="mb-3">
-                    <label class="form-label">Votre message</label>
-                    <textarea name="message" class="form-control" rows="4" required>{{ old('message') }}</textarea>
-                    @error('message')<div class="text-danger small">{{ $message }}</div>@enderror
+                <label class="form-label" for="page-message">Votre message</label>
+                <textarea id="page-message" name="message" rows="3" maxlength="500" required
+                          class="form-control @error('message') is-invalid @enderror"
+                          placeholder="Aujourd'hui j'ai du mal à me concentrer…">{{ old('message') }}</textarea>
+                @error('message')<span class="wb-field-error">{{ $message }}</span>@enderror
+
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mt-3">
+                    <span class="text-muted" style="font-size:.78rem">500 caractères maximum.</span>
+                    <button type="submit" class="btn btn-primary">
+                        <x-icon name="send" /> Envoyer
+                    </button>
                 </div>
-                <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
         </div>
     </div>
 
-    <div class="col-md-7">
-        <div class="card feature-card p-4">
-            <h5>Historique du chatbot</h5>
-            @if($messages->isEmpty())
-                <p class="text-muted">Aucune conversation pour le moment.</p>
-            @else
-                <div class="list-group">
-                    @foreach($messages as $message)
-                        <div class="list-group-item mb-2 rounded-3">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div class="flex-grow-1">
-                                    <strong>Vous :</strong> {{ $message->message }}<br>
-                                    <strong>Bot :</strong> {{ $message->response }}
-                                    <div class="text-muted mt-2 small">{{ $message->created_at->format('d/m/Y H:i') }}</div>
-                                </div>
-                                <form method="POST" action="{{ route('chatbot.destroy', $message) }}" class="ms-2" onsubmit="return confirm('Supprimer ce message ?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">✕</button>
-                                </form>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
+    {{-- ----------------------------------------------------------- Aside --}}
+    <div class="col-lg-4">
+        <div class="wb-card wb-reveal mb-4">
+            <h5 class="wb-section-title"><x-icon name="sparkles" /> Par où commencer ?</h5>
+            <p class="mb-3" style="font-size:.86rem">Cliquez sur une phrase pour l'insérer dans le champ.</p>
+
+            @php
+                $suggestions = [
+                    'Je me sens stressé par mes examens.',
+                    'Je n\'arrive pas à dormir correctement.',
+                    'J\'ai perdu toute motivation ces derniers jours.',
+                    'Je me sens seul depuis la rentrée.',
+                    'Comment organiser mes révisions sans paniquer ?',
+                ];
+            @endphp
+
+            <div class="d-flex flex-column gap-2">
+                @foreach($suggestions as $suggestion)
+                    <button type="button" class="btn btn-soft btn-sm text-start" data-suggestion="{{ $suggestion }}"
+                            style="justify-content: flex-start">
+                        {{ $suggestion }}
+                    </button>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="wb-card wb-reveal">
+            <h5 class="wb-section-title"><x-icon name="lifebuoy" /> Bon à savoir</h5>
+            <p class="mb-2" style="font-size:.86rem">
+                WellBot est un soutien du quotidien, pas un professionnel de santé.
+                Il ne remplace ni un médecin, ni un psychologue.
+            </p>
+            <p class="mb-0" style="font-size:.86rem">
+                Si ce que vous traversez devient trop lourd, parlez-en au service de santé
+                de votre université ou à une personne de confiance.
+            </p>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    (function () {
+        var field = document.getElementById('page-message');
+        if (!field) return;
+
+        document.querySelectorAll('[data-suggestion]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                field.value = button.dataset.suggestion;
+                field.focus();
+                field.setSelectionRange(field.value.length, field.value.length);
+                field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+    })();
+</script>
+@endpush
