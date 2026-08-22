@@ -36,10 +36,10 @@ Tous les livrables du projet (cahier des charges, diagrammes UML, schema BD, gui
 
 ## Auteur
 
-kbayer feres 
-amdouni sleh 
-achref louati 
-louay sakli 
-hakim louleb 
+Feres kbayer /
+Med Sleh Amdouni /
+Achref Louati
+Louay Sakli 
+Hakim Louleb 
 
 
