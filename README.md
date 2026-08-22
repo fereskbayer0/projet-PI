@@ -296,7 +296,7 @@ Le dossier [`docs/`](docs/) contient les livrables académiques :
 
 ## Auteurs
 
-Feres Kbayer · Achref Louati · Med Sleh Amdouni · Hakim Louleb · Louay Sakli
+Feres Kbayer · Med Sleh Amdouni · Achref Louati · Louay Sakli · Hakim Louleb
 
 ---
 
