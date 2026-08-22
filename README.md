@@ -1,4 +1,4 @@
-# Application Bien-etre Etudiant
+# WellBot
 
 Plateforme web pour aider les etudiants a suivre leur humeur, discuter avec un chatbot et trouver des ressources de bien-etre.
 
